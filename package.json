@@ -12,9 +12,15 @@
     "test": "jest"
   },
   "dependencies": {
+    "@elastic/datemath": "^5.0.3",
+    "@elastic/eui": "^91.3.1",
+    "@emotion/css": "^11.11.2",
+    "@emotion/react": "^11.11.1",
     "@kinde-oss/kinde-auth-react": "^3.0.23",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.0-beta",
     "core-js": "^3.9.1",
+    "moment": "^2.29.4",
+    "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "regenerator-runtime": "^0.13.7",
