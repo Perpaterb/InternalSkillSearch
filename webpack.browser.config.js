@@ -6,7 +6,8 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const { HotModuleReplacementPlugin } = require("webpack");
-
+const Dotenv = require('dotenv-webpack');
+const webpack = require('webpack');
 const isOffline = !!process.env.IS_OFFLINE;
 
 module.exports = {
@@ -65,6 +66,12 @@ module.exports = {
   // React recommends `cheap-module-source-map` for development
   devtool: isOffline ? "cheap-module-source-map" : "nosources-source-map",
   plugins: [
+      // fix "process is not defined" error:
+      new webpack.ProvidePlugin({
+        process: 'process/browser',
+        "React": "react",
+      }),
+    new Dotenv(),
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
@@ -126,6 +133,9 @@ module.exports = {
     // TsconfigPathsPlugin applies the path aliases defined in `.tsconfig.json`
     plugins: [new TsconfigPathsPlugin()],
     extensions: [".browser.tsx", ".browser.ts", ".browser.jsx", ".browser.js", ".tsx", ".ts", ".jsx", ".js"],
+    alias: {
+      process: "process/browser"
+    },
   },
   output: {
     path: path.join(__dirname, "dist"),

@@ -1,5 +1,5 @@
 {
-  "name": "serverless-react-boilerplate",
+  "name": "InternalSkillSearch",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,6 +12,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@kinde-oss/kinde-auth-react": "^3.0.23",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.0-beta",
     "core-js": "^3.9.1",
     "react": "^17.0.2",
@@ -50,6 +51,8 @@
     "copy-webpack-plugin": "^9.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.4.0",
+    "dotenv": "^16.3.1",
+    "dotenv-webpack": "^8.0.1",
     "file-loader": "^6.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.0.4",
@@ -57,6 +60,7 @@
     "mini-css-extract-plugin": "^2.4.2",
     "null-loader": "^4.0.1",
     "prettier": "^2.2.1",
+    "process": "^0.11.10",
     "react-refresh": "^0.10.0",
     "serverless": "^3.14.0",
     "serverless-offline": "~8.5.0",
