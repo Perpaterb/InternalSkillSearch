@@ -6,5 +6,6 @@ import LoggedOut from "./components/LoggedOut";
 export default function Home() {
   const { isLoading, isAuthenticated } = useKindeAuth();
 
-  return isAuthenticated ? <LoggedIn /> : <LoggedOut />;
+  // return isAuthenticated ? <LoggedIn /> : <LoggedOut />;
+  return (<LoggedIn />)
 }

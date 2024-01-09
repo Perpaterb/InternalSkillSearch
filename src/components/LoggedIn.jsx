@@ -1,68 +1,143 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
+import { firebase } from '../firebase';
+import { collection, getDocs, getFirestore } from "@firebase/firestore"
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Landing from "./Landing"
+import FindSkill from "./FindSkill"
+import UserAd from "./UserAd"
+import Admin from "./Admin"
 
 export default function LoggedIn() {
+  
   const { user, logout } = useKindeAuth();
+  const [page, setPage] = useState("Landing"); 
+  const responsesCollectionRef = collection(firebase, "People")
+
+  useEffect(() => {
+    const getAllDataFromDB = async () => {
+      const data = await getDocs(responsesCollectionRef)
+      const peopleData = data.docs.map((doc) => ({...doc.data(), id: doc.id}))
+      window.localStorage.setItem("peopleData", JSON.stringify(peopleData))
+    }
+    getAllDataFromDB()
+  }, [])
+
+  const NaveChange = (newPageName) => {
+    setPage(newPageName)
+  }
 
   return (
     <>
       <header>
         <nav className="nav container">
-          <h1 className="text-display-3">KindeAuth</h1>
+          <h1 className="text-display-3">Internal Skill Search</h1>
+
+          {/* Navigation buttons */}
+          <Box sx={{ flexGrow: 1 , paddingTop: 0, paddingLeft: 7}}>
+            {(() => {
+              if (page === "Landing") {
+                return (
+                  <Button sx={{ bgcolor: '#ffffff' }} className="text-subtle" onClick={() => NaveChange("Landing")}>
+                  Home
+                  </Button>
+                )
+              } else {
+                return (
+                  <Button className="text-subtle" onClick={() => NaveChange("Landing")}>
+                  Home
+                  </Button>
+                )
+              }
+            })()}
+            {(() => {
+              if (page === "FindSkill") {
+                return (
+                  <Button sx={{ bgcolor: '#ffffff' }} className="text-subtle" onClick={() => NaveChange("FindSkill")}>
+                  Find Skill
+                  </Button>
+                )
+              } else {
+                return (
+                  <Button className="text-subtle" onClick={() => NaveChange("FindSkill")}>
+                  Find Skill
+                  </Button>
+                )
+              }
+            })()}
+            {(() => {
+              if (page === "UserAd") {
+                return (
+                  <Button sx={{ bgcolor: '#ffffff' }} className="text-subtle" onClick={() => NaveChange("UserAd")}>
+                  Your Ad
+                  </Button>
+                )
+              } else {
+                return (
+                  <Button className="text-subtle" onClick={() => NaveChange("UserAd")}>
+                  Your Ad
+                  </Button>
+                )
+              }
+            })()}
+            {(() => {
+              if (page === "Admin") {
+                return (
+                  <Button sx={{ bgcolor: '#ffffff' }} className="text-subtle" onClick={() => NaveChange("Admin")}>
+                  Admin
+                  </Button>
+                )
+              } else {
+                return (
+                  <Button className="text-subtle" onClick={() => NaveChange("Admin")}>
+                  Admin
+                  </Button>
+                )
+              }
+            })()}
+          </Box>
           <div className="profile-blob">
-            {user.picture !== "" ? (
-              <img
-                className="avatar"
-                src={user.picture}
-                alt="user profile avatar"
-              />
-            ) : (
-              <div className="avatar">
-                {user?.given_name?.[0]}
-                {user?.family_name?.[1]}
-              </div>
-            )}
             <div>
               <p className="text-heading-2">
                 {user?.given_name} {user?.family_name}
               </p>
-              <button className="text-subtle" onClick={logout}>
+              <Button className="text-subtle" onClick={logout}>
                 Sign out
-              </button>
+              </Button>
             </div>
           </div>
         </nav>
       </header>
 
-      <main>
-        <div className="container">
-          <div className="card start-hero">
-            <p className="text-body-2 start-hero-intro">Woohoo!</p>
-            <p className="text-display-2">
-              Your authentication is all sorted.
-              <br />
-              Build the important stuff.
-            </p>
-          </div>
-          <section className="next-steps-section">
-            <h2 className="text-heading-1">Next steps for you</h2>
-          </section>
-        </div>
-      </main>
-
+      {(() => {
+        if (page === "FindSkill") {
+          return (
+            <FindSkill/>
+          )
+        } else if (page === "UserAd") {
+          return (
+            <UserAd/>
+          )
+        } else if (page === "Admin") {
+          return (
+            <Admin/>
+          )
+        } else {
+          return (
+            <Landing/>
+          )
+        }
+      })()}
+      
       <footer className="footer">
         <div className="container">
-          <strong className="text-heading-2">KindeAuth</strong>
           <p className="footer-tagline text-body-3">
-            Visit our{" "}
-            <a className="link" href="https://kinde.com/docs">
-              help center
+            Support{" "}
+            <a className="link" href="andrew.strange@uts.edu.au">
+              Andrew.Strange@uts.edu.au
             </a>
           </p>
-
-          <small className="text-subtle">
-            © 2023 KindeAuth, Inc. All rights reserved
-          </small>
         </div>
       </footer>
     </>

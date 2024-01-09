@@ -32,7 +32,7 @@
 }
 
 :root {
-  --g-color-black: #000;
+  --g-color-black: #292b2cef;
   --g-color-white: #fff;
 
   --g-color-grey-50: #f6f6f6;
@@ -81,6 +81,7 @@
 html,
 body {
   font-family: var(--g-font-family);
+  background-color: #e4eef8;
 }
 
 button {
@@ -211,6 +212,8 @@ a {
   border-radius: var(--g-border-radius-large);
   box-shadow: var(--g-box-shadow);
   color: var(--g-color-white);
+  max-width: 750px;
+  margin: auto;
 }
 
 .link {

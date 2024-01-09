@@ -12,11 +12,17 @@
     "test": "jest"
   },
   "dependencies": {
+    "@elastic/eui": "^92.0.0",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
     "@kinde-oss/kinde-auth-react": "^3.0.23",
+    "@mui/material": "^5.15.3",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.0-beta",
     "core-js": "^3.9.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "firebase": "^10.7.1",
+    "framer-motion": "^10.17.9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "regenerator-runtime": "^0.13.7",
     "source-map-support": "^0.5.19"
   },
