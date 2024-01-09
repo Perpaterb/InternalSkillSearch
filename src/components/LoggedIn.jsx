@@ -31,7 +31,7 @@ export default function LoggedIn() {
   return (
     <>
       <header>
-        <nav className="nav container">
+        <nav className="nav container" style={{ position: 'fixed', zIndex: '1000', height: '70px', backdropFilter: 'blur(2px)', backgroundColor: "#e4eef8c0",}}>
           <h1 className="text-display-3">Internal Skill Search</h1>
 
           {/* Navigation buttons */}
@@ -108,6 +108,7 @@ export default function LoggedIn() {
             </div>
           </div>
         </nav>
+        <div style={{ position: 'fixed', top: 70, zIndex: '1000', height: '20px', width: "100%", backdropFilter: 'blur(1px)', backgroundImage: 'linear-gradient(#e4eef8c0,#e4eef800)'}} ></div>
       </header>
 
       {(() => {

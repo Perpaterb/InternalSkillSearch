@@ -42,13 +42,19 @@ const HorizontalScrollCarousel = () => {
   const x = useTransform(scrollYProgress, [0, 1], ["1%", "-95%"]);
 
   return (
-    <section ref={targetRef} className="relative h-[300vh] bg-neutral-900">
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <motion.div style={{ x }} className="flex gap-4">
+    <section ref={targetRef} className="relative h-[3000vh] bg-neutral-900 overflow-hidden" style={{ height: 2000 }} >
+      <div className="sticky top-0 flex h-screen items-center overflow-hidden" 
+                style={{            
+                  position: "sticky",
+                  top: "0",
+                  overflow: "hidden",
+                  padding: 100
+                }}>
+        <motion.div style={{ x }}>
           {(() => {
               if (peopleData != "") {
                 return (
-                  <div >
+                  <div style={{ display: 'flex', flexDirection: 'row', gap: '50px',}}>
                     {peopleData.map((userData,index) => {
                       return <UserAdCard key={index} {...userData} />;
                     })}

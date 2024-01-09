@@ -8,7 +8,7 @@ export default function UserAdCard(p) {
   
   return (
 
-    <div className="card start-hero">
+    <div className="card start-hero flex">
       <div className="card-header text-body-2 ">
         <h3>{userData.firstName} {userData.lastName}</h3>
       </div>
